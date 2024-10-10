@@ -9,22 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Libs\libwkhtmltox.dll" />
-    <None Remove="Libs\libwkhtmltox.dylib" />
-    <None Remove="Libs\libwkhtmltox.so" />
     <None Remove="libwkhtmltox.so" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Libs\libwkhtmltox.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Libs\libwkhtmltox.dylib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Libs\libwkhtmltox.so">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="libwkhtmltox.so">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
