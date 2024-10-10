@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2eb257ce474042eca27de145a1cd0bf5 }}/vetopdfwebapp:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./Veto.Pdf.Service/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
