@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2eb257ce474042eca27de145a1cd0bf5 }}/vetopdfwebapp:e7b1da4f91d0467f4e8c22603eca1333768412cb
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2eb257ce474042eca27de145a1cd0bf5 }}/vetopdfwebapp:latest
         file: ./Veto.Pdf.Service/Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'vetopdfwebappcontainer'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_bcfbf80bbf7f417195bfed9bd577df59 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2eb257ce474042eca27de145a1cd0bf5 }}/vetopdfwebapp:e7b1da4f91d0467f4e8c22603eca1333768412cb'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2eb257ce474042eca27de145a1cd0bf5 }}/vetopdfwebapp:latest'
