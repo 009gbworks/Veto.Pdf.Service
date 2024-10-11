@@ -1,6 +1,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Veto.Pdf.Service.Helper;
 
 namespace Veto.Pdf.Service.Controllers
 {
@@ -42,30 +43,33 @@ namespace Veto.Pdf.Service.Controllers
             return File(file, "application/pdf");
         }
 
-        [HttpGet("Pdf")]
-        public async Task<IActionResult> GetPdf()
+        [HttpGet("ThermalPrintPdf")]
+        public async Task<IActionResult> GetThermalPrintPdf([FromQuery] PdfBuilderOptions pdfBuilderOptions)
         {
-            var doc = new HtmlToPdfDocument()
+            var paperSize = new PechkinPaperSize("95", (110 + pdfBuilderOptions.RowsAdjustment * 6.2).ToString());
+            var globalSettings = new GlobalSettings
             {
-                GlobalSettings = {
-                    ColorMode = ColorMode.Color,
-                    Orientation = Orientation.Landscape,
-                    PaperSize = PaperKind.A4Plus,
-                },
-                Objects = {
-                    new ObjectSettings() {
-                        PagesCount = true,
-                        HtmlContent = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur mauris eget ultrices  iaculis. Ut                               odio viverra, molestie lectus nec, venenatis turpis.",
-                        WebSettings = { DefaultEncoding = "utf-8" },
-                        HeaderSettings = { FontSize = 9, Right = "Page [page] of [toPage]", Line = true, Spacing = 2.812 }
-                    }
-                }
+                ColorMode = ColorMode.Color,
+                Orientation = Orientation.Portrait,
+                PaperSize = paperSize,
+                Margins = new MarginSettings { Left = 0.5, Right = 0.5, Top = 1 },
+                DocumentTitle = "PDF Report",
             };
 
-            var file = _converter.Convert(doc);
+            var objectSettings = new ObjectSettings
+            {
+                PagesCount = true,
+                HtmlContent = PdfTemplateGenerator.GetHTMLString(pdfBuilderOptions),
+                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css") },
+            };
 
-            //return Ok("Successfully created PDF document.");
-            //return File(file, "application/pdf", "EmployeeReport.pdf"); USE THIS RETURN STATEMENT TO DOWNLOAD GENERATED PDF DOCUMENT
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = globalSettings,
+                Objects = { objectSettings }
+            };
+
+            var file = _converter.Convert(pdf);
             return File(file, "application/pdf");
         }
     }
