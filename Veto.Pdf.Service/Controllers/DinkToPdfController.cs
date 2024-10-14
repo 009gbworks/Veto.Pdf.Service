@@ -25,7 +25,7 @@ namespace Veto.Pdf.Service.Controllers
             return Ok("Veto Pdf service running");
         }
 
-        [HttpGet("DefaultPdf")]
+        [HttpGet("DefaultPdfTest")]
         public async Task<IActionResult> GetDefaultPdf()
         {
             var doc = new HtmlToPdfDocument()
