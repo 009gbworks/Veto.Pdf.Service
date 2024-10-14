@@ -19,7 +19,7 @@ namespace Veto.Pdf.Service.Controllers
             _converter = converter;
         }
 
-        [HttpGet("DefaultPdfTest")]
+        [HttpGet("DefaultPdfTestfix")]
         public async Task<IActionResult> GetDefaultPdf()
         {
             var doc = new HtmlToPdfDocument()
