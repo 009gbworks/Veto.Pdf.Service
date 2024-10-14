@@ -19,6 +19,12 @@ namespace Veto.Pdf.Service.Controllers
             _converter = converter;
         }
 
+        [HttpGet("TestApi")]
+        public async Task<IActionResult> TestService()
+        {
+            return Ok("Veto Pdf service running");
+        }
+
         [HttpGet("DefaultPdf")]
         public async Task<IActionResult> GetDefaultPdf()
         {
