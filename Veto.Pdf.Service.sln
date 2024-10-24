@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Veto.Pdf.Service", "Veto.Pdf.Service\Veto.Pdf.Service.csproj", "{C55E5DDB-325D-440E-905A-AD7CEA82D5B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veto.Pdf.Models", "Veto.Pdf.Models\Veto.Pdf.Models.csproj", "{75720E46-89E1-425A-AFD4-307234A01DDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Veto.Pdf.Service.Models", "Veto.Pdf.Models\Veto.Pdf.Service.Models.csproj", "{75720E46-89E1-425A-AFD4-307234A01DDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

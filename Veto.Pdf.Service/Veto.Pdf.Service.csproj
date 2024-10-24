@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Veto.Pdf.Models\Veto.Pdf.Models.csproj" />
+    <ProjectReference Include="..\Veto.Pdf.Models\Veto.Pdf.Service.Models.csproj" />
   </ItemGroup>
 
 </Project>

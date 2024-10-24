@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using Veto.Pdf.Models;
+using Veto.Pdf.Service.Models;
 
 namespace Veto.Pdf.Service.Helper
 {

@@ -1,7 +1,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Veto.Pdf.Models;
+using Veto.Pdf.Service.Models;
 using Veto.Pdf.Service.Helper;
 
 namespace Veto.Pdf.Service.Controllers
@@ -52,6 +52,37 @@ namespace Veto.Pdf.Service.Controllers
 
         [HttpGet("ThermalPrintPdf")]
         public async Task<IActionResult> GetThermalPrintPdf([FromQuery] PdfBuilderOptions pdfBuilderOptions)
+        {
+            var paperSize = new PechkinPaperSize("95", (110 + pdfBuilderOptions.RowsAdjustment * 6.2).ToString());
+            var globalSettings = new GlobalSettings
+            {
+                ColorMode = ColorMode.Color,
+                Orientation = Orientation.Portrait,
+                PaperSize = paperSize,
+                Margins = new MarginSettings { Left = 0.5, Right = 0.5, Top = 1 },
+                DocumentTitle = "PDF Report",
+            };
+
+            var p = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css");
+            var objectSettings = new ObjectSettings
+            {
+                PagesCount = true,
+                HtmlContent = PdfTemplateGenerator.GetHTMLString(pdfBuilderOptions),
+                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css") },
+            };
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = globalSettings,
+                Objects = { objectSettings }
+            };
+
+            var file = _converter.Convert(pdf);
+            return File(file, "application/pdf");
+        }
+
+        [HttpPost("DownloadThermalPrintPdf")]
+        public async Task<IActionResult> DownloadThermalPrintPdfAsync([FromBody] PdfBuilderOptions pdfBuilderOptions)
         {
             var paperSize = new PechkinPaperSize("95", (110 + pdfBuilderOptions.RowsAdjustment * 6.2).ToString());
             var globalSettings = new GlobalSettings

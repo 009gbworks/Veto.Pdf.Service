@@ -1,4 +1,4 @@
-﻿namespace Veto.Pdf.Models
+﻿namespace Veto.Pdf.Service.Models
 {
     public class PdfBuilderOptions
     {
