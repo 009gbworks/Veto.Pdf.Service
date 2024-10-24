@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Veto.Pdf.Models;
 
 namespace Veto.Pdf.Service.Helper
 {
@@ -53,7 +54,7 @@ namespace Veto.Pdf.Service.Helper
             return sb.ToString();
         }
 
-        private static string BuildCompanyInfo(PdfCompanyBuilderOptions? companyBuilderOptions)
+        private static string BuildCompanyInfo(CompanyBuilderOptions? companyBuilderOptions)
         {
 			if (companyBuilderOptions == null) 
 			{ 
@@ -74,7 +75,7 @@ namespace Veto.Pdf.Service.Helper
 			<span><img alt="""" src={companyBuilderOptions.ComapnyImageSource}><input type=""file"" accept=""image/*""></span>";
         }
 
-        private static string BuildRecepientInfo(PdfRecepientBuilderOptions? recepientBuilderOptions)
+        private static string BuildRecepientInfo(RecepientBuilderOptions? recepientBuilderOptions)
         {
             if (recepientBuilderOptions == null)
             {
@@ -116,7 +117,7 @@ namespace Veto.Pdf.Service.Helper
 			</table>";
         }
 
-        private static string BuildInvoiceRows(IEnumerable<PdfRowBuilderOptions>? pdfRowsBuilderOptions)
+        private static string BuildInvoiceRows(IEnumerable<InvoiceRowBuilderOptions>? pdfRowsBuilderOptions)
         {
             if (pdfRowsBuilderOptions == null)
             {
@@ -138,7 +139,7 @@ namespace Veto.Pdf.Service.Helper
             return salesDetails.ToString();
         }
 
-        private static string BuildSummary(PdfSummaryBuilderOptions? summaryBuilderOptions)
+        private static string BuildSummary(SummaryBuilderOptions? summaryBuilderOptions)
 		{
             if (summaryBuilderOptions == null)
             {
@@ -169,51 +170,4 @@ namespace Veto.Pdf.Service.Helper
 			</table>";
 		}
     }
-
-	public class PdfBuilderOptions
-	{
-		public string? InvoiceNumber {  get; set; }
-		public DateTime InvoiceDate { get; set; }
-		public int RowsAdjustment {  get; set; }
-
-		public PdfCompanyBuilderOptions? CompanyBuilderOptions { get; set; }
-		public PdfRecepientBuilderOptions? RecepientBuilderOptions { get; set; }
-		public IEnumerable<PdfRowBuilderOptions>? RowsBuilderOptions { get; set; }
-		public PdfSummaryBuilderOptions? SummaryBuilderOptions {  get; set; }
-	}
-
-    public class PdfCompanyBuilderOptions
-    {
-		public string? CompanyName { get; set; }
-		public string? EmployeeName { get; set; }
-		public string? AddressOne { get; set; }
-		public string? AddressTwo { get; set; }
-		public string? Telephone { get; set; }
-		public string? ComapnyImageSource { get; set; }
-    }
-
-    public class PdfRecepientBuilderOptions
-    {
-		public string? FirstName { get; set; }
-		public string? LastName { get; set; }
-		public int Id { get; set; }
-		public string? Telephone { get; set; }
-    }
-
-	public class PdfRowBuilderOptions
-	{
-		public string? Name { get; set; }
-		public decimal Price { get; set; }
-		public decimal Quantity { get; set; }
-		public decimal Total { get; set; }
-	}
-
-	public class PdfSummaryBuilderOptions
-	{
-		public decimal SubTotal { get; set; }
-		public decimal Discount { get; set; }
-		public decimal Total { get; set; }
-		public decimal PaidAmount { get; set; }
-		public decimal DueAmount { get; set; }
-	}
 }

@@ -31,4 +31,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Veto.Pdf.Models\Veto.Pdf.Models.csproj" />
+  </ItemGroup>
+
 </Project>

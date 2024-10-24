@@ -1,6 +1,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Veto.Pdf.Models;
 using Veto.Pdf.Service.Helper;
 
 namespace Veto.Pdf.Service.Controllers
@@ -62,6 +63,7 @@ namespace Veto.Pdf.Service.Controllers
                 DocumentTitle = "PDF Report",
             };
 
+            var p = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css");
             var objectSettings = new ObjectSettings
             {
                 PagesCount = true,
